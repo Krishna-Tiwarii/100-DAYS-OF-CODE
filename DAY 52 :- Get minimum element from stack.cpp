@@ -1,7 +1,6 @@
 class Solution{
     int minEle;
     stack<int> st1; //original value
-    stack<int> st2; // min value
     public:
     
        /*returns min element from stack*/
@@ -11,7 +10,7 @@ class Solution{
            if(st1.empty())
            return -1;
            else
-           return st2.top();
+           return st1.top()%101; // %min element nd /original element
        }
        
        /*returns poped element from stack*/
@@ -20,9 +19,8 @@ class Solution{
            //Write your code here
            if(st1.empty())
            return -1;
-               int element =st1.top();
+               int element =st1.top()/101;
                st1.pop();
-               st2.pop();
             return element;
        }
        
@@ -32,13 +30,12 @@ class Solution{
            //Write your code here
            if(st1.empty())
            {
-               st1.push(x);
-               st2.push(x);
+               st1.push(x*101+x);
+
            }
            else
            {
-               st1.push(x);
-               st2.push(min(x,st2.top()));
+               st1.push(x*101+min(x,st1.top()%101));
            }
        }
 };
